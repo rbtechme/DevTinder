@@ -1,0 +1,21 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "Dev Tinder for Developer ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+     "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "Dev",
+    "Tinder",
+    "Javascript",
+    "Reactjs"
+  ],
+  "author": "Raju Bhalerao",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.0.1"
+  }
+}
