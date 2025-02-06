@@ -7,7 +7,7 @@ const app = express();
       return res.send("This is dashboard");
    }
    next(); // Pass control to the next middleware
-}); */
+}); 
 
 app.get("/user",(req, res) =>{
    res.send({name:"raju", surname:"Bhalerao"});
@@ -27,6 +27,16 @@ app.delete("/user", (req, res)=>{
 
 app.use("/test", (req, res) => {
     res.send("This is test");
+});
+*/
+
+app.get("/*fly/", (req, res) => {
+    res.send({name:"raju", surname:"Bhalerao"});
+});
+
+app.get("/user/:userId/:username/:rollno", (req, res) => {
+    console.log(req.params);
+    res.send({ name: "raju", surname: "Bhalerao" });
 });
 
 app.listen(7777, () => {
