@@ -69,7 +69,7 @@ app.use(
 
 );
 
-*/
+
 
 const {adminAuth, userAuth} = require("./middlewares/auth")
 
@@ -86,6 +86,23 @@ app.delete("/admin/deleteUser", (req, res)=>{
 app.get("/user", userAuth, (req, res)=>{
     res.send("get all user data")
 });
+*/
+
+
+
+app.get("/user", (req, res) => {
+
+    throw new Error("dfsffsdf");
+    res.send("getting all user data");
+
+});
+
+
+app.use("/", (err, req, res, next) => {
+    if (err) {
+        res.status(500).send("something went wrong");
+    }
+})
 
 app.listen(7777, () => {
     console.log("Server started on port: http://localhost:7777");
