@@ -38,7 +38,7 @@ app.get("/user/:userId/:username/:rollno", (req, res) => {
     console.log(req.params);
     res.send({ name: "raju", surname: "Bhalerao" });
 });
-*/
+
 
 app.use(
     "/user", [(req, res, next) => {
@@ -69,7 +69,23 @@ app.use(
 
 );
 
+*/
 
+const {adminAuth, userAuth} = require("./middlewares/auth")
+
+app.use("/admin", adminAuth);
+
+app.get("/admin/allUserData", (req, res)=>{
+    res.send("all user data come from server");
+});
+
+app.delete("/admin/deleteUser", (req, res)=>{
+    res.send("Delete a user from db");
+});
+
+app.get("/user", userAuth, (req, res)=>{
+    res.send("get all user data")
+});
 
 app.listen(7777, () => {
     console.log("Server started on port: http://localhost:7777");
