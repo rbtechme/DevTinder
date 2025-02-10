@@ -10,7 +10,7 @@ const adminAuth = (req, res, next) =>{
 } 
 
 const userAuth = (req, res, next) =>{
-    const token = "xyzdfsfdfds";
+    const token = "xyz";
 
     const AutherizeKey = token === "xyz";
     if(!AutherizeKey){
