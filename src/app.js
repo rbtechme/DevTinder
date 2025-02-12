@@ -78,7 +78,7 @@ app.patch("/user/:id", async (req, res) => {
     const data = req.body;
    try {
       
-       if(data.skills.length > 10){
+       if(data?.skills.length > 10){
         throw new Error("Skills not allow more than 10");
        }
 
