@@ -42,12 +42,16 @@ app.post("/login", async (req, res)=>{
         if(!user){
             throw new Error("Invalid Credential");
         }
-        const isPassword = await bcrypt.compare(password, user.password);
+        const isPassword = await user.validatePassword(password);
         if(!isPassword){
             throw new Error("Invalid Credential");
         }else{
-            const token = jwt.sign({_id:user._id}, "@#@@rAjUbHaLeRaO53443#@@#");
+            const token = await user.getJWT();
+
+            console.log(token);
+
             res.cookie('token',token);
+
             res.status(200).send({status:true, message:"login Successful!"});
         }
    
@@ -69,6 +73,12 @@ app.get("/profile", userAuth, async (req, res)=>{
     }
 })
 
+app.post("/sendConnectionRequest", userAuth, async (req, res)=>{
+    console.log("sending the request");
+    const user = req.user;
+    
+    res.send(user.firstName + " send request connection");
+});
 
 
 
