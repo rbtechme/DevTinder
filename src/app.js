@@ -10,6 +10,7 @@ app.use('/', require('./router/auth'));
 app.use('/', require('./router/profile'));
 app.use('/', require('./router/request'));
 app.use('/', require('./router/forgotPassword'));
+app.use('/', require('./router/user'));
 
 connectDB()
 .then(()=> {

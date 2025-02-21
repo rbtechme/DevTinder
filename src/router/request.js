@@ -2,6 +2,7 @@ const express = require("express");
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User  = require('../models/user');
+const { Connection } = require("mongoose");
 
 const requestRouter = express.Router();
 
@@ -46,5 +47,34 @@ requestRouter.post("/sendConnectionRequest/:status/:toUserId", userAuth, async (
     res.status(404).send({ status: false, message: error.message });
   }
 });
+
+requestRouter.post("/sendConnectionReview/:status/:requestedId", userAuth, async (req, res)=>{
+  try {
+    // requestedId means connectionRequst Collection Id that _id
+    const {status, requestedId} = req.params;
+    const allowedStatus = ["accepted", "rejected"];
+    if (!allowedStatus.includes(status)) {
+      throw new Error("Invalid status");
+    }
+
+    const connectionRequest = await ConnectionRequest.findOne({
+      _id: requestedId,
+      status: "interested",
+      toUserId: req.user._id
+    });
+
+    if (!connectionRequest) {
+      throw new Error("Invalid request");
+    }
+
+    connectionRequest.status = status;
+    await connectionRequest.save();
+    res.status(200).send({ status: true, message: "Request "+status+" successfully" });
+
+    
+  } catch (error) {
+    res.status(404).send({ status: false, message: error.message });
+  }
+})
 
 module.exports = requestRouter;
