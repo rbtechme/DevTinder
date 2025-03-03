@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl:{
         type: String,
-        default:"https://picsum.photos/id/237/200/300"
+        default:"https://i.pravatar.cc/300"
     },
     skills:
     {

@@ -14,9 +14,11 @@ const validateSignUpData = (req) =>{
 
 const validateSignInData = (req)=>{
     const {emailId} = req.body;
-    if(!validator.isEmail(emailId)){
+    
+    if(!validator.isEmail(emailId) || !emailId){
         throw new Error("Please add correct Email ID");
     }
+  
 }
 
 const validateProfileEditData = (req)=>{

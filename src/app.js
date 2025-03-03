@@ -29,5 +29,5 @@ connectDB()
     });
   })
   .catch(() => {
-    console.error("connect can not connected");
+    console.error("MongoDB can not connect, Please try again and check internet connection is proper..");
   });
