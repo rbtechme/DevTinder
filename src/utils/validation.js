@@ -23,7 +23,7 @@ const validateSignInData = (req)=>{
 
 const validateProfileEditData = (req)=>{
     try {
-        const allowedUpdates = ['firstName', 'lastName', 'emailId', 'age', 'about', 'photoUrl', 'skills'];
+        const allowedUpdates = ['firstName', 'lastName', 'age', 'gender', 'about', 'photoUrl'];
         const updates = Object.keys(req.body);
         const isValidOperation = updates.every((update)=> allowedUpdates.includes(update));
         return isValidOperation;
