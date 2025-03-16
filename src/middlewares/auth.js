@@ -7,7 +7,7 @@ const userAuth = async (req, res, next) =>{
     if(!token){
        return res.status(401).send({Error : "Please login first"});
     }
-    const {_id} = await jwt.verify(token, "@#@@rAjUbHaLeRaO53443#@@#");
+    const {_id} = await jwt.verify(token, process.env.JWT_KEY);
     const user = await User.findById(_id);
     if(!user){
         throw new Error("User not exits");
