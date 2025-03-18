@@ -3,6 +3,7 @@ const { connectDB } = require("./config/database");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require('dotenv').config();
+require("./utils/cronjob");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/", require("./router/profile"));
 app.use("/", require("./router/request"));
 app.use("/", require("./router/forgotPassword"));
 app.use("/", require("./router/user"));
+app.use("/", require("./router/payment"));
 
 connectDB()
   .then(() => {
