@@ -60,7 +60,14 @@ const userSchema = new mongoose.Schema({
     skills:
     {
         type:[String]
-    }
+    },
+    isPremiumUser:{
+        type: Boolean,
+        default:false
+    },
+    membership:{
+        type: String
+    },
 },{
     timestamps:true
 });
