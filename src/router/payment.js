@@ -68,7 +68,7 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
 
     const user = await User.findById({ _id: payment.userId });
     user.isPremiumUser = isWebhookSignature;
-    user.membership = payment.notes.memberShip;
+    user.membership = paymentDetails.notes.memberShip;
     await user.save();
     res.send({ status: true, message: "Payment successful" });
 
